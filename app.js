@@ -1,12 +1,12 @@
 
-let data;
+// let data;
 document.addEventListener('DOMContentLoaded', function() {
  
         fetch('https://swapi.dev/api/people')
         .then((response) => response.json())
         .then(({results}) => {
-            console.log(results);   
-            data = results;
+            // console.log(results);   
+            // data = results;
             users = new User(results);
             // console.log(data[0].height)   
             let output = "";
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <p class="view"> ${users.name}</p>
                 </div>
-                <div id="panel">
+                <div class="panel">
                 <p>${users.name}</p>
                 <p>${users.birth_year}</p>
                  <p>${users.height}</p>
@@ -31,27 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
         })
 
 })
-function myFunction() {
-   var  x  =  document.getElementById("panel");
-   if(x.style.display === "none"){
-       x.style.display = "block";
-   }
-   else{
-       x.style.display = "none";
-   }
+  const myFunction = ()=> {
+     var  x  =  document.querySelector(".panel");
+    // x.map(element => {
+        if(x.style.display === "none"){
+            x.style.display = "block";
+         }
+         else{
+            x.style.display = "none";
+        } 
+    // });
+    
 
   }
 
-
-// class User{
-//     constructor(name, birth_year, height, gender){
-//         this.name = name;
-//         this.birth_year = birth_year;
-//         this.height = height;
-//         this.gender = gender;
-    
-//     }
-// }
 
 
 

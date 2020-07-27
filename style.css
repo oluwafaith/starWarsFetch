@@ -37,8 +37,10 @@ p.view{
 
 #output{
     padding: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
-#panel{
+.panel{
      display:none; 
     font-size: 16px;
     padding: 10px;
