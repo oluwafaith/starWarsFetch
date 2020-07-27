@@ -10,7 +10,41 @@ div.landingPage{
     width: 100%;
     height: 600px;
 }
-div.imageIcon{
-    width: 140px;
-    height: 100px;
+
+/* #output{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+} */
+div.card{
+    margin: 10px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 250px;
+}
+div.card:hover{
+    border: 1px solid #777;
+}
+div.card img{ 
+    width: 100%;
+    height: auto;
+  
+} 
+p.view{
+    padding: 15px;
+    text-align: center;
+}
+
+#output{
+    padding: 5rem;
+}
+#panel{
+     display:none; 
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: blue;
+    color: white;
+    border: solid 1px #a6d8a8;
+    margin: auto;
 }
