@@ -27,52 +27,54 @@ const fetchApi = async (response) =>{
         return data;
     })
 }
-//adding the click event
-const addClick = () => {
 
+const populateUser = (user) => {
+    return  `
+       <div class = "user-character"   data-id = ${user.id}> 
+           <img src = ${user.image} alt = ${user.name}/>
+           <div class= "name"> ${user.name}</div>
+       
+       <div class = "user-detail">
+           <div>My name is - ${user.name}</div>
+           <div>I am a - ${user.gender}</div>
+           <div>with a height of - ${user.height}</div>
+           <div> my age is - ${user.birth_year}</div>
+       </div>
+       </div>
+       `
+   
+}
+
+//adding the click event and removing the event
+const addClick = () => {
      document.querySelectorAll(".user-character").forEach(data=> {
         data.addEventListener("click", displayUser);
         
     })
 }
-//displaying the user on click
+
 function displayUser(event){
      event.preventDefault();
-     document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList.remove("show"));
+     document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList);
      this.childNodes[5].classList.toggle("show");
 }
-
-//
-const populateUser = (user) => {
-     return  `
-        <div class = "user-character"   data-id = ${user.id}> 
-            <img src = ${user.image} alt = ${user.name}/>
-            <div class= "name"> ${user.name}</div>
-        
-        <div class = "user-detail">
-            <div>My name is - ${user.name}</div>
-            <div>I am a - ${user.gender}</div>
-            <div>with a height of - ${user.height}</div>
-            <div> my age is - ${user.birth_year}</div>
-        </div>
-        </div>
-        `
+function hideDisplay(e){
+    e.preventDefault(e);
+    document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList);
+    this.childNodes[5].classList.toggle("hide");
     
 }
-
-
 const displayDetails = async(users) => {
     let output = "";
-    users.forEach(user => {
+    users.map(user => {
         output += populateUser(user);
-    })
+    }).join("")
     getInput.innerHTML = output;
     addClick();
 
 }
 
-
-//the url of images
+//the url for the  images
 const images = [
     "./image/luke_Skywalker.png",
     "./image/Darth-Vader.jpeg",

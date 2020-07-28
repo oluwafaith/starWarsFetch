@@ -6,7 +6,7 @@ body{
     animation: show 1500ms linear forwards;
 }
 .hide{
-    animation: hide 1500ms linear forwards;
+    animation: hide 1500ms linear backwards;
 }
 .user-character img{
     width:  300px;
