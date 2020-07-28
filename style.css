@@ -1,19 +1,23 @@
 body{
-    background-color: blue;
-    color: white;;
+    background-color: #659DBD;
+    color: #FBEEC1;
 }
 .show{
     animation: show 1500ms linear forwards;
 }
+.hide{
+    animation: hide 1500ms linear forwards;
+}
 .user-character img{
-    width:  250px;
+    width:  300px;
     height: 250px;
     padding: 10px;
     margin: 30px;
+    border-radius: 10%;
 }
 .landingPage{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 @keyframes show{
     from{
@@ -23,6 +27,21 @@ body{
         opacity: 1;
     }
 }
+@keyframes hide{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 .user-detail{
     opacity: 0;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
+.name{
+    margin-left: 80px;
 }
