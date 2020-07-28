@@ -1,7 +1,7 @@
 const getInput = document.querySelector(".landingPage");
 let user;
-const api = "https://swapi.dev/api/people/";
 
+//the url of images
 const imageUrls = [
     "./image/luke_Skywalker.png",
     "./image/Darth-Vader.jpeg",
@@ -15,6 +15,7 @@ const imageUrls = [
     "./image/Darth-Vader.jpeg", 
 ]
 
+//fetching the url
 async function fetchApi(url){
     return fetch(url)
     .then(res => res.json())
@@ -24,6 +25,7 @@ async function fetchApi(url){
         console.log(err);
     })
 }
+//adding the click event
 const addClick = () => {
 
      document.querySelectorAll(".user-character").forEach(data=> {
@@ -31,11 +33,13 @@ const addClick = () => {
         
     })
 }
-function displayUser(evt){
-    evt.preventDefault();
+//displaying the user
+function displayUser(event){
+    event.preventDefault();
     document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList.remove("show"));
     this.childNodes[5].classList.toggle("show");
 }
+
 
 const buildUser = (user) => {
     return ( `
@@ -44,14 +48,16 @@ const buildUser = (user) => {
             <figcaption>${user.name}</figcaption>
         
         <div class = "user-detail">
-            <div>Name: ${user.name}</div>
-            <div>Gender: ${user.gender}</div>
-            <div>Height: ${user.height}</div>
+            <div>My name is - ${user.name}</div>
+            <div>I am a - ${user.gender}</div>
+            <div>with a height of - ${user.height}</div>
+            <div> my age is - ${user.birth_year}</div>
         </div>
         </figure>
         `
     )
 }
+
 
 const displayDetails = async(users) => {
     let output = "";
@@ -63,8 +69,10 @@ const displayDetails = async(users) => {
 
 }
 
+//this is where the api is being called from "https://swapi.dev/api/people/"
+//
 const begin = async () =>{
-    let userData = await fetchApi(api);
+    let userData = await fetchApi("https://swapi.dev/api/people/");
     let newUserData = userData.results.map((user, index) =>{
         user.id = index;
         user.imageUrl = imageUrls[index];
@@ -72,7 +80,7 @@ const begin = async () =>{
     })
 
     users = new User(newUserData);
-    console.log(" hello")
+    console.log( users)
     displayDetails(newUserData);
 }
 
