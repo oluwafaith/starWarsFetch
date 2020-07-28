@@ -1,50 +1,79 @@
+const getInput = document.querySelector(".landingPage");
+let user;
+const api = "https://swapi.dev/api/people/";
 
-// let data;
-document.addEventListener('DOMContentLoaded', function() {
- 
-        fetch('https://swapi.dev/api/people')
-        .then((response) => response.json())
-        .then(({results}) => {
-            // console.log(results);   
-            // data = results;
-            users = new User(results);
-            // console.log(data[0].height)   
-            let output = "";
-            results.forEach(function(users) {                        
-                output += `
-                <div class="card" onclick="myFunction()" >
-                <img src = "https://res.cloudinary.com/dhtxiw89g/image/upload/v1595572957/dummy-image.png" width="600" height= "400">
-                
-                <p class="view"> ${users.name}</p>
-                </div>
-                <div class="panel">
-                <p>${users.name}</p>
-                <p>${users.birth_year}</p>
-                 <p>${users.height}</p>
-                 <p>${users.gender}</p>
-                 </div>
-                `;
-            });
-            document.getElementById('output').innerHTML = output;
+const imageUrls = [
+    "./image/luke_Skywalker.png",
+    "./image/Darth-Vader.jpeg",
+    "./image/luke_Skywalker.png",
+    "./image/Darth-Vader.jpeg",
+    "./image/luke_Skywalker.png",
+    "./image/Darth-Vader.jpeg",
+    "./image/luke_Skywalker.png",
+    "./image/Darth-Vader.jpeg",
+    "./image/luke_Skywalker.png",
+    "./image/Darth-Vader.jpeg", 
+]
 
-         
-        })
+async function fetchApi(url){
+    return fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        return data;
+    }).catch(err => {
+        console.log(err);
+    })
+}
+const addClick = () => {
 
-})
-  const myFunction = ()=> {
-     var  x  =  document.querySelector(".panel");
-    // x.map(element => {
-        if(x.style.display === "none"){
-            x.style.display = "block";
-         }
-         else{
-            x.style.display = "none";
-        } 
-    // });
-    
+     document.querySelectorAll(".user-character").forEach(data=> {
+        data.addEventListener("click", displayUser);
+        
+    })
+}
+function displayUser(evt){
+    evt.preventDefault();
+    document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList.remove("show"));
+    this.childNodes[5].classList.toggle("show");
+}
 
-  }
+const buildUser = (user) => {
+    return ( `
+        <figure class = "user-character"  onclick = "addClick" data-id = ${user.id}> 
+            <img src = ${user.imageUrl} alt = ${user.name}/>
+            <figcaption>${user.name}</figcaption>
+        
+        <div class = "user-detail">
+            <div>Name: ${user.name}</div>
+            <div>Gender: ${user.gender}</div>
+            <div>Height: ${user.height}</div>
+        </div>
+        </figure>
+        `
+    )
+}
 
+const displayDetails = async(users) => {
+    let output = "";
+    users.forEach(user => {
+        output += buildUser(user);
+    })
+    getInput.innerHTML = output;
+    addClick();
 
+}
 
+const begin = async () =>{
+    let userData = await fetchApi(api);
+    let newUserData = userData.results.map((user, index) =>{
+        user.id = index;
+        user.imageUrl = imageUrls[index];
+        return user;
+    })
 
+    users = new User(newUserData);
+    console.log(" hello")
+    displayDetails(newUserData);
+}
+
+begin();
