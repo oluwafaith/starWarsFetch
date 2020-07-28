@@ -13,7 +13,7 @@ body{
     height: 250px;
     padding: 10px;
     margin: 30px;
-    border-radius: 10%;
+    border-radius: 15%;
 }
 .landingPage{
     display: grid;

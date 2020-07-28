@@ -5,7 +5,7 @@ let user;
 
 //fetching the data from api
 //this is where the api is being called from "https://swapi.dev/api/people/"
-const begin = async () =>{
+const getUser = async () =>{
     const dataUsed = await fetchApi("https://swapi.dev/api/people/");
     
     let dataOfUser = dataUsed.results.map((user, index) =>{
@@ -27,7 +27,7 @@ const fetchApi = async (response) =>{
         return data;
     })
 }
-
+//populating the ui
 const populateUser = (user) => {
     return  `
        <div class = "user-character"   data-id = ${user.id}> 
@@ -89,4 +89,4 @@ const images = [
 ]
 
 
-begin();
+getUser();
