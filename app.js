@@ -7,9 +7,12 @@ let user;
 
 
 const fetchApi = async () =>{
-    const response = await fetch("https://swapi.dev/api/people/")
+   try{ const response = await fetch("https://swapi.dev/api/people/")
     const data = await response.json()
         return data;
+}catch(e){
+    console.log(e)
+}
 }
 
 const getUser = async () =>{
