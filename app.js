@@ -1,7 +1,7 @@
 class User {
 
-    constructor(details){
-        this.details = details;
+    constructor(user){
+        this.user = user;
     }
     user() {
     const {name, height, gender, birth_year} = this.details
