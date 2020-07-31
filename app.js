@@ -1,4 +1,20 @@
-//import User from './newApp.js'
+class User {
+
+    constructor(details){
+        this.details = details;
+    }
+    user() {
+    const {name, height, gender, birth_year} = this.details
+    return{
+        name,
+        height,
+        gender,
+        birth_year
+    }
+    }
+    
+}
+
 const getInput = document.querySelector(".landingPage");
 
 let user;
@@ -8,23 +24,26 @@ let user;
 
 const fetchApi = async () =>{
    try{ const response = await fetch("https://swapi.dev/api/people/")
-    const data = await response.json()
-        return data;
-}catch(e){
+    const  data  = await response.json()
+        return data.results;
+ }catch(e){
     console.log(e)
-}
+ }
 }
 
 const getUser = async () =>{
-    const dataUsed = await fetchApi("https://swapi.dev/api/people/");
+    const dataUsed = await fetchApi();
     
-    let dataOfUser = dataUsed.results.map((user, index) =>{
+    let dataOfUser = dataUsed.map((user, index) =>{
         user.id = index;
         user.image = images[index];
+        console.log(user);
+        
         return user;
     })
+console.log(dataOfUser);
 
-    users = new User(dataOfUser);
+   // user = new User(dataOfUser);
     displayDetails(dataOfUser);
 }
 
@@ -32,10 +51,10 @@ const getUser = async () =>{
 
 
 //displaying the  image and details of the user on the ui
-const populateUser = (user) => {
+const populateUser = (user,images) => {
     return  `
        <div class = "user-character"   data-id = ${user.id}> 
-           <img src = ${user.image} alt = ${user.name}/>
+           <img src = ${images} alt = ${user.name}/>
            <div class= "name"> ${user.name}</div>
        
        <div class = "user-detail">
@@ -72,9 +91,12 @@ function hideDisplay(e){
 }
 const displayDetails = async(users) => {
     let output = "";
-    users.map(user => {
-        output += populateUser(user);
-    }).join("")
+    users.map((user,index) => {
+        const obj = new User(user);
+        // console.log(obj);
+        
+        output += populateUser(obj.user(),images[index]);
+    })
     getInput.innerHTML = output;
 
     addClick();
@@ -91,8 +113,9 @@ const images = [
     "./image/luke_Skywalker.png",
     "./image/Darth-Vader.jpeg",
     "./image/luke_Skywalker.png",
-    "./image/Darth-Vader.jpeg", 
+    "./image/Darth-Vader.jpeg" 
 ]
+
 
 
 getUser();

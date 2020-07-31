@@ -1,11 +1,20 @@
-class User {
+// class User {
 
-    constructor(users){
-        this.users = users;
-    }
+//     constructor(details){
+//         this.details = details;
+//     }
+//     user() {
+//     const {name, height, gender} = this.details
+//     return{
+//         name,
+//         height,
+//         gender
+//     }
+//     }
     
-}
+// }
 
 
 
-//export default User
+
+//module.exports = User;
