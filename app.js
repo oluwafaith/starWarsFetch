@@ -4,14 +4,12 @@ const getInput = document.querySelector(".landingPage");
 let user;
 
 //fetching the data from api
-//i made a call to the api  "https://swapi.dev/api/people/" 
 
-const fetchApi = async (response) =>{
-    return fetch(response)
-    .then(res => res.json())
-    .then(data => {
+
+const fetchApi = async () =>{
+    const response = await fetch("https://swapi.dev/api/people/")
+    const data = await response.json()
         return data;
-    })
 }
 
 const getUser = async () =>{
@@ -24,7 +22,6 @@ const getUser = async () =>{
     })
 
     users = new User(dataOfUser);
-    console.log( users)
     displayDetails(dataOfUser);
 }
 
@@ -50,9 +47,6 @@ const populateUser = (user) => {
 }
 
 //adding the click event and removing the event
-//the first thing to do is to target the parameter which in this case is the user character
-//then add an event listener click, the other functions shows or hide the value
-
 const addClick = () => {
      document.querySelectorAll(".user-character").forEach(data=> {
         data.addEventListener("click", displayUser);
@@ -62,12 +56,14 @@ const addClick = () => {
 
 function displayUser(event){
      event.preventDefault();
-     document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList);
+     const character = document.querySelectorAll(".user-character")
+     character.forEach(user => user.childNodes[5].classList)
      this.childNodes[5].classList.toggle("show");
 }
 function hideDisplay(e){
     e.preventDefault(e);
-    document.querySelectorAll(".user-character").forEach(user => user.childNodes[5].classList);
+    const character = document.querySelectorAll(".user-character")
+     character.forEach(user => user.childNodes[5].classList)
     this.childNodes[5].classList.toggle("hide");
     
 }
