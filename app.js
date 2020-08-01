@@ -1,5 +1,4 @@
 class User {
-
     constructor(details){
         this.details = details;
     }
@@ -20,15 +19,13 @@ const getInput = document.querySelector(".landingPage");
 let user;
 
 //fetching the data from api
-
-
 const fetchApi = async () =>{
    try{ const response = await fetch("https://swapi.dev/api/people/")
-    const  data  = await response.json()
-        return data.results;
- }catch(e){
+        const  data  = await response.json()
+         return data.results;
+      }catch(e){
     console.log(e)
- }
+  }
 }
 
 const getUser = async () =>{
@@ -37,17 +34,12 @@ const getUser = async () =>{
     let dataOfUser = dataUsed.map((user, index) =>{
         user.id = index;
         user.image = images[index];
-        console.log(user);
-        
         return user;
     })
-console.log(dataOfUser);
 
    // user = new User(dataOfUser);
     displayDetails(dataOfUser);
 }
-
-
 
 
 //displaying the  image and details of the user on the ui
@@ -93,7 +85,6 @@ const displayDetails = async(users) => {
     let output = "";
     users.map((user,index) => {
         const obj = new User(user);
-        // console.log(obj);
         
         output += populateUser(obj.user(),images[index]);
     })
